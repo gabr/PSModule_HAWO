@@ -59,7 +59,7 @@ function Get-HawoTraffic
         -TypeName PSObject `
         -Property @{CurrentTraffic = $traffic;
                     TrafficLimit = $trafficLimit;
-                    TrafficRation = ($traffic/$trafficLimit)
+                    TrafficRatio = ($traffic/$trafficLimit)
                     Year = $year;
                     Week = $week}
 
