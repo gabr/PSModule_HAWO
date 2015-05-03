@@ -53,13 +53,15 @@ function Get-HawoTraffic
     $year = $oneLineAbowe[0]
     $week = $oneLineAbowe[1]
     $traffic = $laufendeWoche.Substring($laufendeWoche.IndexOf(">") + 1).Substring(0, $laufendeWoche.IndexOf("&") - $laufendeWoche.IndexOf(">") - 1)
+    $traffic = $traffic.Replace("<b>", "").Replace("</b>", "")
 
     Write-Verbose 'Creating output object...'
     $Output = New-Object `
         -TypeName PSObject `
         -Property @{CurrentTraffic = $traffic;
                     TrafficLimit = $trafficLimit;
-                    TrafficRatio = ($traffic/$trafficLimit)
+                    TrafficRatio = ($traffic/$trafficLimit);
+                    TrafficLeft = ($trafficLimit - $traffic);
                     Year = $year;
                     Week = $week}
 
